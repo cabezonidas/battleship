@@ -1,10 +1,11 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { getRandomGrid } from "./ships";
-
-const grid = getRandomGrid();
+import React from "react";
 
 function App() {
+  const [grid, setGrid] = React.useState(getRandomGrid());
+
   return (
     <div className="App">
       <header className="App-header">
@@ -12,6 +13,7 @@ function App() {
         <code style={{ display: "grid", gridTemplateColumns: "repeat(10, 30px)" }}>
           {grid.map((row, i) => row.map((r, ii) => <div key={`${i}_${ii}`}>{r || "_"}</div>))}
         </code>
+        <button onClick={() => setGrid(getRandomGrid())}>Shuffle</button>
       </header>
     </div>
   );
